@@ -1,0 +1,35 @@
+{
+  "name": "gulp-data",
+  "version": "0.0.1",
+  "description": "Generate a data object for other plugins to consume.",
+  "keywords": [
+    "gulpplugin", "data", "json", "gulp"
+  ],
+  "author": {
+    "name": "Colyn Brown",
+    "email": "colyn.brown@gmail.com",
+    "url": "https://github.com/colynb"
+  },
+  "repository": "colynb/gulp-data",
+  "scripts": {
+    "test": "istanbul test _mocha --report html -- test/*.js --reporter spec",
+    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+  },
+  "dependencies": {
+    "through2": "*",
+    "gulp-util": "~2.2.0"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "coveralls": "*",
+    "mocha-lcov-reporter": "*",
+    "istanbul": "*",
+    "event-stream": "*",
+    "should": "~2.1.0"
+  },
+  "engines": {
+    "node": ">=0.8.0",
+    "npm": ">=1.2.10"
+  },
+  "license": "MIT"
+}
