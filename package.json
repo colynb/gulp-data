@@ -1,7 +1,7 @@
 {
   "name": "gulp-data",
-  "version": "0.0.1",
-  "description": "Generate a data object for other plugins to consume.",
+  "version": "0.0.2",
+  "description": "Generate a data object from a variety of sources: json, front-matter, database, anything... and set it to the file object for other plugins to consume.",
   "keywords": [
     "gulpplugin", "data", "json", "gulp"
   ],
@@ -12,8 +12,7 @@
   },
   "repository": "colynb/gulp-data",
   "scripts": {
-    "test": "istanbul test _mocha --report html -- test/*.js --reporter spec",
-    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "test": "istanbul test _mocha --report html -- test/*.js --reporter spec"
   },
   "dependencies": {
     "through2": "*",

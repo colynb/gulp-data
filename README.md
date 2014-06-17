@@ -1,10 +1,16 @@
 # [gulp](https://github.com/wearefractal/gulp)-data
 
+[![Build Status](https://travis-ci.org/colynb/gulp-data.png?branch=master)](https://travis-ci.org/colynb/gulp-data)
+
+[![NPM](https://nodei.co/npm/gulp-data.png?stars&downloads)](https://npmjs.org/package/gulp-data)
+
+[Learn more about gulp.js, the streaming build system](http://gulpjs.com)
+
 ## Introduction
 
-Gulp-data proposes a common API for attaching data to the file object for other plugins to consume.
+Gulp-data proposes a common API for attaching data to the file object for other plugins to consume. With gulp-data you can generate a data object from a variety of sources: json, front-matter, database, anything... and set it to the file object for other plugins to consume.
 
-Many plugins, such as ```gulp-swig``` or ```gulp-jade``` allow for JSON data to be passed via their respective options parameter. However, this becomes problematic - as the number of ways of getting at data (via JSON files, front-matter, data bases, etc) increases, the more plugin authors have to update their APIs to support these sources. The ```gulp-data``` plugin aims to standardize a method that is generic enough to encapsulate these data sources into a single ```data``` property attached to the file object. It's really up to you as to where your data comes from, a JSON file, from a front-matter section of the file, or even a database, ```gulp-data``` doesn't really care.
+Many plugins, such as ```gulp-swig``` or ```gulp-jade``` allow for JSON data to be passed via their respective options parameter. However, frequently what you want is the ability to dynamically set the data based off the file name or some other attribute of the file. Without using another plugin, this becomes problematic - as the number of ways of getting at data (via JSON files, front-matter, data bases, etc) increases, the more plugin authors have to update their APIs to support these sources. The ```gulp-data``` plugin aims to standardize a method that is generic enough to encapsulate these data sources into a single ```data``` property attached to the file object. It's really up to you as to where your data comes from, a JSON file, from a front-matter section of the file, or even a database, ```gulp-data``` doesn't really care.
 
 ## Usage
 
