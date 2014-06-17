@@ -1,5 +1,4 @@
 # [gulp](https://github.com/wearefractal/gulp)-data
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][depstat-image]][depstat-url]
 
 ## Introduction
 
@@ -81,12 +80,12 @@ gulp.task('db-test', function() {
 
 ## API
 
-### data(callback)
+### data(dataFunction)
 
-#### callback
+#### dataFunction
 Type: `Function`  
 
-Define an callback function that returns a data object. Could return JSON from a file, or an object returned from a database.
+Define a function that returns a data object via a callback function. Could return JSON from a file, or an object returned from a database.
 
 ## Note to gulp plugin authors
 
