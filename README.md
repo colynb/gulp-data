@@ -12,6 +12,9 @@ Gulp-data proposes a common API for attaching data to the file object for other 
 
 Many plugins, such as ```gulp-swig``` or ```gulp-jade``` allow for JSON data to be passed via their respective options parameter. However, frequently what you want is the ability to dynamically set the data based off the file name or some other attribute of the file. Without using another plugin, this becomes problematic - as the number of ways of getting at data (via JSON files, front-matter, data bases, etc) increases, the more plugin authors have to update their APIs to support these sources. The ```gulp-data``` plugin aims to standardize a method that is generic enough to encapsulate these data sources into a single ```data``` property attached to the file object. It's really up to you as to where your data comes from, a JSON file, from a front-matter section of the file, or even a database, ```gulp-data``` doesn't really care.
 
+However, for this to be effective, I'm asking plugin devs that receive data through the options parameter to make a small change to additionally accept this data through the ```file.data``` property. (See below)
+
+
 ## Usage
 
 First, install `gulp-data` as a development dependency:
@@ -95,7 +98,7 @@ Define a function that returns a data object via a callback function. Could retu
 
 ## Note to gulp plugin authors
 
-If your plugin needs a data object, one that normally gets passed in via your options parameter, please update the plugin to accept data from the ```file.data``` property. Here's how you can do it:
+If your plugin needs a data object, one that normally gets passed in via your options parameter, I'm asking if you could please update the plugin to accept data from the ```file.data``` property. Here's how you can do it:
 
 ```gulp-swig``` usually accepts data via its ```options.data``` parameter, but with a small change, it checks to see if there's a ```file.data``` property and if so, merges it into the data object.
 
@@ -103,6 +106,7 @@ If your plugin needs a data object, one that normally gets passed in via your op
 var data = opts.data || {};
 if (file.data) {
   data = _.extend(file.data, data);
+  // or just data = file.data if you don't care to merge. Up to you.
 }
 ```
 
