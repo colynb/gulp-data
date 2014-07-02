@@ -37,7 +37,7 @@ module.exports = function(data) {
     if (file.isBuffer()) {
       var self = this;
       if (typeof data === 'function') {
-        data = data(file, function(result){
+        data(file, function(result){
           file.data = result;
           self.push(file);
           callback();

@@ -1,6 +1,6 @@
 {
   "name": "gulp-data",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Generate a data object from a variety of sources: json, front-matter, database, anything... and set it to the file object for other plugins to consume.",
   "keywords": [
     "gulpplugin", "data", "json", "gulp"
