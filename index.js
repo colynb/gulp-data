@@ -14,6 +14,17 @@ module.exports = function(data) {
 
   function gulpData(file, enc, callback) {
     /*jshint validthis:true*/
+    var self = this;
+
+    function handle(err, result){
+      if (err) {
+        self.emit("error", new gutil.PluginError("gulp-data", { message: err }));
+        return callback();
+      }
+      file.data = result;
+      self.push(file);
+      callback();
+    }
 
     // Do nothing if no contents
     if (file.isNull()) {
@@ -34,18 +45,11 @@ module.exports = function(data) {
 
     // check if file.contents is a `Buffer`
     if (file.isBuffer()) {
-      var self = this;
-      if (typeof data === 'function') {
-        data(file, function(err, result){
-          if (err) {
-            self.emit("error", new gutil.PluginError("gulp-data", { message: err }));
-            return callback();
-          }
-          file.data = result;
-          self.push(file);
-          callback();
-        });
-      }
+      
+      if (typeof data === 'function')
+        data(file, handle);
+      else if (data && typeof data.then === 'function') 
+        data.then(function(data){ return handle(undefined, data) }, function(err) { return handle(err); });
     }
   }
 
