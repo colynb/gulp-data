@@ -28,8 +28,7 @@ module.exports = function(data) {
       // https://github.com/dominictarr/event-stream
 
       // accepting streams is optional
-      this.emit("error",
-        new gutil.PluginError("gulp-data", "Stream content is not supported"));
+      this.emit("error", new gutil.PluginError("gulp-data", "Stream content is not supported"));
       return callback();
     }
 
@@ -37,7 +36,11 @@ module.exports = function(data) {
     if (file.isBuffer()) {
       var self = this;
       if (typeof data === 'function') {
-        data(file, function(result){
+        data(file, function(err, result){
+          if (err) {
+            self.emit("error", new gutil.PluginError("gulp-data", { message: err }));
+            return callback();
+          }
           file.data = result;
           self.push(file);
           callback();

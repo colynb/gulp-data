@@ -18,6 +18,35 @@ describe("gulp-data", function() {
     message: 'Hello'
   };
 
+  it("should produce errors when data handler has error", function(done) {
+    var srcFile = new gutil.File({
+      path: "test/fixtures/hello.txt",
+      cwd: "test/",
+      base: "test/fixtures",
+      contents: fs.readFileSync("test/fixtures/hello.txt")
+    });
+
+    var stream = data(function(file, cb) {
+      cb({ type: 'test-error' });
+    });
+
+    stream.on("error", function(err) {
+      should.exist(err);
+      should.exist(err.message);
+      should.exist(err.message.type);
+      err.message.should.have.property('type', 'test-error');
+      done();
+    });
+
+    stream.on("end", function() {
+      done('fail');
+    })
+
+    stream.write(srcFile);
+    stream.end();
+
+  });
+
   it("should produce expected file data property", function(done) {
 
     var srcFile = new gutil.File({
@@ -28,7 +57,7 @@ describe("gulp-data", function() {
     });
 
     var stream = data(function(file, cb) {
-      cb({
+      cb(undefined, {
         message: 'Hello'
       });
     });
