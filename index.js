@@ -26,6 +26,10 @@ module.exports = function(data) {
       callback();
     }
 
+    function promise(data) {
+      data.then(function(data){ return handle(undefined, data) }, function(err) { return handle(err); });
+    }
+
     // Do nothing if no contents
     if (file.isNull()) {
       this.push(file);
@@ -47,9 +51,12 @@ module.exports = function(data) {
     if (file.isBuffer()) {
       
       if (typeof data === 'function')
-        data(file, handle);
+        if (data.length === 1)
+          promise(data(file));
+        else
+          data(file, handle);
       else if (data && typeof data.then === 'function') 
-        data.then(function(data){ return handle(undefined, data) }, function(err) { return handle(err); });
+        promise(data);
     }
   }
 

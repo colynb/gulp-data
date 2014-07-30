@@ -109,6 +109,40 @@ describe("gulp-data", function() {
     stream.end();
   });
 
+  it("should work with mapped promises", function(done) {
+    var srcFile = new gutil.File({
+      path: "test/fixtures/hello.txt",
+      cwd: "test/",
+      base: "test/fixtures",
+      contents: fs.readFileSync("test/fixtures/hello.txt")
+    });
+
+    var stream = data(function(file) {
+      var deferred = Q.defer();
+      setTimeout(function() {
+        deferred.resolve({ message: file.path });
+      }, 20);
+      return deferred.promise;
+    });
+
+    
+
+    stream.on("error", function(err) {
+      should.exist(err);
+      done(err);
+    });
+
+    stream.on("data", function(newFile) {
+      should.exist(newFile);
+      should.exist(newFile.data);
+      newFile.data.should.have.property('message', newFile.path);
+      done();
+    });
+
+    stream.write(srcFile);
+    stream.end();
+  });
+
   it("should produce expected file data property", function(done) {
 
     var srcFile = new gutil.File({
