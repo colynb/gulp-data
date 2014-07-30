@@ -14,6 +14,27 @@ module.exports = function(data) {
 
   function gulpData(file, enc, callback) {
     /*jshint validthis:true*/
+    var self = this, called = false;
+
+    function handle(err, result){
+      // extra guard in case
+      if (called) return;
+      called = true;
+      if (err) {
+        self.emit("error", new gutil.PluginError("gulp-data", { message: err }));
+        return callback();
+      }
+      file.data = result;
+      self.push(file);
+      callback();
+    }
+
+    function local(data) {
+      if (data && typeof data.then === 'function')
+        data.then(function(data){ return handle(undefined, data) }, function(err) { return handle(err); });
+      else
+        handle(undefined, data);
+    }
 
     // Do nothing if no contents
     if (file.isNull()) {
@@ -28,21 +49,23 @@ module.exports = function(data) {
       // https://github.com/dominictarr/event-stream
 
       // accepting streams is optional
-      this.emit("error",
-        new gutil.PluginError("gulp-data", "Stream content is not supported"));
+      this.emit("error", new gutil.PluginError("gulp-data", "Stream content is not supported"));
       return callback();
     }
 
     // check if file.contents is a `Buffer`
     if (file.isBuffer()) {
-      var self = this;
-      if (typeof data === 'function') {
-        data(file, function(result){
-          file.data = result;
-          self.push(file);
-          callback();
-        });
-      }
+      var res = null;
+      if (typeof data === 'function')
+          try {
+            res = data(file, handle);
+            if (data.length <= 1)
+              return local(res)
+          } catch(e) {
+            return handle(e);
+          }
+      else
+        local(data);
     }
   }
 

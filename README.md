@@ -36,30 +36,25 @@ var MongoClient = require('mongodb').MongoClient;
 /*
   Get data via JSON file, keyed on filename.
 */
-var getJsonData = function(file, cb) {
-  var jsonPath = './examples/' + path.basename(file.path) + '.json';
-  cb(require(jsonPath));
-};
-
 gulp.task('json-test', function() {
   return gulp.src('./examples/test1.html')
-    .pipe(data(getJsonData))
+    .pipe(data(function(file) {
+      return require('./examples/' + path.basename(file.path) + '.json');
+    }))
     .pipe(swig())
     .pipe(gulp.dest('build'));
 });
-
-var getFrontMatter = function(file, cb) {
-  var content = fm(String(file.contents));
-  file.contents = new Buffer(content.body);
-  cb(content.attributes);
-};
 
 /*
   Get data via front matter
 */
 gulp.task('fm-test', function() {
   return gulp.src('./examples/test2.html')
-    .pipe(data(getFrontMatter))
+    .pipe(data(function(file) {
+      var content = fm(String(file.contents));
+      file.contents = new Buffer(content.body);
+      return content.attributes;
+    }))
     .pipe(swig())
     .pipe(gulp.dest('build'));
 });
@@ -67,20 +62,14 @@ gulp.task('fm-test', function() {
 /*
   Get data via database, keyed on filename.
 */
-var getMongoData = function(file, cb) {
-  MongoClient.connect('mongodb://127.0.0.1:27017/gulp-data-test', function(err, db) {
-    if(err) throw err;
-    var collection = db.collection('file-data-test');
-    collection.findOne({filename: path.basename(file.path)}, function(err, doc) {
-      db.close();
-      cb(doc);
-    });
-  });
-};
-
 gulp.task('db-test', function() {
   return gulp.src('./examples/test3.html')
-    .pipe(data(getMongoData))
+    .pipe(data(function(file, cb) {
+      MongoClient.connect('mongodb://127.0.0.1:27017/gulp-data-test', function(err, db) {
+        if(err) return cb(err);
+        cb(undefined, db.collection('file-data-test').findOne({filename: path.basename(file.path)}));
+      });
+    }))
     .pipe(swig())
     .pipe(gulp.dest('build'));
 });
@@ -92,9 +81,51 @@ gulp.task('db-test', function() {
 ### data(dataFunction)
 
 #### dataFunction
-Type: `Function`  
+Type: `Function`
 
 Define a function that returns a data object via a callback function. Could return JSON from a file, or an object returned from a database.
+
+You can return the data object:
+```javascript
+data(function(file) {
+  return { 'foo': file.path }
+})
+```
+
+You can return a promise:
+```javascript
+data(function(file) {
+  return promise;
+})
+```
+
+You can feed a result object through the callback:
+```javascript
+data(function(file, callback) {
+  return callback(undefined, { 'foo': 'bar' });
+})
+```
+
+You can feed a promise object through the callback:
+```javascript
+data(function(file, callback) {
+  return callback(undefined, promise);
+})
+```
+
+You can throw an error:
+```javascript
+data(function(file) {
+  throw new Error('my-error');
+})
+```
+
+You can raise an error via the callback:
+```javascript
+data(function(file, callback) {
+  return callback('error');
+})
+```
 
 ## Note to gulp plugin authors
 
