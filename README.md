@@ -144,6 +144,12 @@ if (file.data) {
 }
 ```
 
+## Contributors
+
+- [Colyn Brown](https://github.com/colynb)
+- [Izaak Schroeder](https://github.com/izaakschroeder)
+
+
 ## License
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
