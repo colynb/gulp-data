@@ -1,6 +1,7 @@
 # [gulp](https://github.com/wearefractal/gulp)-data
 
 [![Build Status](https://travis-ci.org/colynb/gulp-data.png?branch=master)](https://travis-ci.org/colynb/gulp-data)
+[![Dependencies](https://david-dm.org/colynb/gulp-data.png)](https://david-dm.org/colynb/gulp-data)
 
 [![NPM](https://nodei.co/npm/gulp-data.png?stars&downloads)](https://npmjs.org/package/gulp-data)
 
