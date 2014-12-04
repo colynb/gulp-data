@@ -34,7 +34,6 @@
     "coveralls": "*",
     "event-stream": "*",
     "istanbul": "*",
-    "lodash": "^2.4.1",
     "mocha": "*",
     "mocha-lcov-reporter": "*",
     "q": "~1.0.1",
