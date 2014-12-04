@@ -1,3 +1,4 @@
+var _ = require("lodash");
 var through = require("through2");
 var gutil = require("gulp-util");
 
@@ -24,7 +25,7 @@ module.exports = function(data) {
         self.emit("error", new gutil.PluginError("gulp-data", { message: err }));
         return callback();
       }
-      file.data = result;
+      file.data = _.merge(file.data || {}, result);
       self.push(file);
       callback();
     }
