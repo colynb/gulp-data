@@ -37,7 +37,8 @@
     "mocha": "*",
     "mocha-lcov-reporter": "*",
     "q": "~1.0.1",
-    "should": "~2.1.0"
+    "should": "~2.1.0",
+    "util-extend": "^1.0.1"
   },
   "engines": {
     "node": ">=0.8.0",

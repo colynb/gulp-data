@@ -1,4 +1,4 @@
-var extend = require("util")._extend;
+var extend = require("util-extend");
 var through = require("through2");
 var gutil = require("gulp-util");
 
