@@ -28,7 +28,8 @@
   },
   "dependencies": {
     "through2": "*",
-    "gulp-util": "~2.2.0"
+    "gulp-util": "~2.2.0",
+    "util-extend": "^1.0.1"
   },
   "devDependencies": {
     "coveralls": "*",
@@ -37,8 +38,7 @@
     "mocha": "*",
     "mocha-lcov-reporter": "*",
     "q": "~1.0.1",
-    "should": "~2.1.0",
-    "util-extend": "^1.0.1"
+    "should": "~2.1.0"
   },
   "engines": {
     "node": ">=0.8.0",
