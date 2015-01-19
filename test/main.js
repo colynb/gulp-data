@@ -33,7 +33,7 @@ describe("gulp-data", function() {
 
     stream.on("error", function(err) {
       should.exist(err);
-      should.exist(err.stack);
+      should.exist(err.message);
       done();
     });
 
@@ -59,7 +59,7 @@ describe("gulp-data", function() {
 
     stream.on("error", function(err) {
       should.exist(err);
-      should.exist(err.stack);
+      should.exist(err.message);
       done();
     });
 
