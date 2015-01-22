@@ -20,10 +20,12 @@
       "url": "http://www.github.com/izaakschroeder"
     }
   ],
-  "repository": {
-    "url": "https://github.com/colynb/gulp-data.git"
-  },
+  "repository": "colynb/gulp-data",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
+    "pretest": "jshint *.js test/*.js",
     "test": "istanbul test _mocha --report html -- test/*.js"
   },
   "dependencies": {
@@ -34,6 +36,7 @@
   "devDependencies": {
     "coveralls": "*",
     "istanbul": "*",
+    "jshint": "^2.6.0",
     "mocha": "*",
     "mocha-lcov-reporter": "*",
     "q": "^1.0.1",
