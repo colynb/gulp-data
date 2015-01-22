@@ -24,7 +24,7 @@
     "url": "https://github.com/colynb/gulp-data.git"
   },
   "scripts": {
-    "test": "istanbul test _mocha --report html -- test/*.js --reporter spec"
+    "test": "istanbul test _mocha --report html -- test/*.js"
   },
   "dependencies": {
     "gulp-util": "^3.0.2",
@@ -33,12 +33,12 @@
   },
   "devDependencies": {
     "coveralls": "*",
-    "event-stream": "*",
     "istanbul": "*",
     "mocha": "*",
     "mocha-lcov-reporter": "*",
     "q": "^1.0.1",
-    "should": "^2.1.1"
+    "should": "^4.6.1",
+    "vinyl": "^0.4.6"
   },
   "engines": {
     "node": ">=0.9.0",
