@@ -27,8 +27,8 @@
     "test": "istanbul test _mocha --report html -- test/*.js --reporter spec"
   },
   "dependencies": {
-    "through2": "*",
-    "gulp-util": "~2.2.0",
+    "gulp-util": "^3.0.2",
+    "through2": "^1.1.1",
     "util-extend": "^1.0.1"
   },
   "devDependencies": {
@@ -37,11 +37,11 @@
     "istanbul": "*",
     "mocha": "*",
     "mocha-lcov-reporter": "*",
-    "q": "~1.0.1",
-    "should": "~2.1.0"
+    "q": "^1.0.1",
+    "should": "^2.1.1"
   },
   "engines": {
-    "node": ">=0.8.0",
+    "node": ">=0.9.0",
     "npm": ">=1.2.10"
   },
   "license": "MIT"
