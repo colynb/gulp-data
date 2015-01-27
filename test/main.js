@@ -2,6 +2,7 @@
 'use strict';
 
 var should = require('should');
+var through = require('through2');
 var Q = require('q');
 
 require('mocha');
@@ -97,6 +98,40 @@ describe('gulp-data', function() {
       done();
     })
     .end(new File({contents: new Buffer('')}));
+  });
+
+  it('should support empty files', function(done) {
+    data(function() {
+      return { message: 'Hello' };
+    })
+    .on('error', function(err) {
+      should.exist(err);
+      done(err);
+    })
+    .on('data', function(newFile) {
+      should.exist(newFile);
+      should.exist(newFile.data);
+      newFile.data.should.have.property('message', 'Hello');
+      done();
+    })
+    .end(new File());
+  });
+
+  it('should support streams', function(done) {
+    data(function() {
+      return { message: 'Hello' };
+    })
+    .on('error', function(err) {
+      should.exist(err);
+      done(err);
+    })
+    .on('data', function(newFile) {
+      should.exist(newFile);
+      should.exist(newFile.data);
+      newFile.data.should.have.property('message', 'Hello');
+      done();
+    })
+    .end(new File({contents: through()}));
   });
 
   it('should work with promises that resolve', function(done) {
