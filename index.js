@@ -43,41 +43,21 @@ module.exports = function(data) {
       }
     }
 
-    // Do nothing if no contents
-    if (file.isNull()) {
-      this.push(file);
-      return callback();
-    }
-
-    if (file.isStream()) {
-
-      // http://nodejs.org/api/stream.html
-      // http://nodejs.org/api/child_process.html
-      // https://github.com/dominictarr/event-stream
-
-      // accepting streams is optional
-      this.emit('error', new gutil.PluginError('gulp-data', 'Stream content is not supported'));
-      return callback();
-    }
-
-    // check if file.contents is a `Buffer`
-    if (file.isBuffer()) {
-      var res = null;
-      if (typeof data === 'function') {
-        try {
-          res = data(file, handle);
-          if (data.length <= 1) {
-            return local(res);
-          }
-
-        } catch(e) {
-          return handle(e);
+    var res = null;
+    if (typeof data === 'function') {
+      try {
+        res = data(file, handle);
+        if (data.length <= 1) {
+          local(res);
         }
+
+      } catch(e) {
+        handle(e);
       }
-      else {
-        local(data);
-      }
+      return;
     }
+
+    local(data);
   }
 
   return through.obj(gulpData);
