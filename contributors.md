@@ -1,4 +1,10 @@
+## Author
+
+- [@colynb](https://github.com/colynb)
+
 ## Contributors
 
-- [Colyn Brown](https://github.com/colynb)
-- [Izaak Schroeder](https://github.com/izaakschroeder)
+- [@izaakschroeder](https://github.com/izaakschroeder)
+- [@stevelacy](https://github.com/stevelacy)
+- [@shinnn](https://github.com/shinnn)
+- [@phillipgreenii](https://github.com/phillipgreenii)

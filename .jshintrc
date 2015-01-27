@@ -14,8 +14,5 @@
     "regexp": true,
     "undef": true,
     "unused": true,
-    "strict": true,
-    "trailing": true,
-    "smarttabs": true,
-    "white": true
+    "strict": true
 }

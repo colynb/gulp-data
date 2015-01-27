@@ -1,9 +1,9 @@
 # [gulp](https://github.com/wearefractal/gulp)-data
 
-[![Build Status](https://travis-ci.org/colynb/gulp-data.png?branch=master)](https://travis-ci.org/colynb/gulp-data)
-[![Dependencies](https://david-dm.org/colynb/gulp-data.png)](https://david-dm.org/colynb/gulp-data)
+[![Build Status](https://travis-ci.org/colynb/gulp-data.svg?branch=master)](https://travis-ci.org/colynb/gulp-data)
+[![Dependencies](https://david-dm.org/colynb/gulp-data.svg)](https://david-dm.org/colynb/gulp-data)
 
-[![NPM](https://nodei.co/npm/gulp-data.png?stars&downloads)](https://npmjs.org/package/gulp-data)
+[![NPM](https://nodei.co/npm/gulp-data.svg?stars&downloads)](https://www.npmjs.com/package/gulp-data)
 
 [Learn more about gulp.js, the streaming build system](http://gulpjs.com)
 
@@ -145,18 +145,19 @@ if (file.data) {
 }
 ```
 
+## Author
+
+- [@colynb](https://github.com/colynb)
+
 ## Contributors
 
-- [Colyn Brown](https://github.com/colynb)
-- [Izaak Schroeder](https://github.com/izaakschroeder)
+- [@izaakschroeder](https://github.com/izaakschroeder)
+- [@stevelacy](https://github.com/stevelacy)
+- [@shinnn](https://github.com/shinnn)
+- [@phillipgreenii](https://github.com/phillipgreenii)
+
 
 
 ## License
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
-
-[npm-url]: https://npmjs.org/package/gulp-data
-[npm-image]: https://badge.fury.io/js/gulp-data.png
-
-[travis-url]: http://travis-ci.org/colynb/gulp-data
-[travis-image]: https://secure.travis-ci.org/colynb/gulp-data.png?branch=master
