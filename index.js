@@ -47,13 +47,14 @@ module.exports = function(data) {
     if (typeof data === 'function') {
       try {
         res = data(file, handle);
-        if (data.length <= 1) {
-          local(res);
-        }
-
       } catch(e) {
         handle(e);
       }
+
+      if (data.length <= 1) {
+        local(res);
+      }
+
       return;
     }
 
