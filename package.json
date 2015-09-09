@@ -29,19 +29,19 @@
     "test": "istanbul test _mocha --report html -- test/*.js"
   },
   "dependencies": {
-    "gulp-util": "^3.0.2",
-    "through2": "^1.1.1",
+    "gulp-util": "^3.0.6",
+    "through2": "^2.0.0",
     "util-extend": "^1.0.1"
   },
   "devDependencies": {
     "coveralls": "*",
     "istanbul": "*",
-    "jshint": "^2.6.0",
+    "jshint": "^2.8.0",
     "mocha": "*",
     "mocha-lcov-reporter": "*",
-    "q": "^1.0.1",
-    "should": "^4.6.1",
-    "vinyl": "^0.4.6"
+    "q": "^1.4.1",
+    "should": "^7.1.0",
+    "vinyl": "^0.5.3"
   },
   "engines": {
     "node": ">=0.9.0",
