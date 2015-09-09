@@ -27,8 +27,10 @@ module.exports = function(data) {
         self.emit('error', new gutil.PluginError('gulp-data', { message: err }));
         return callback();
       }
-      file.data = extend(file.data || {}, result);
-      self.push(file);
+      if (result !== null) {
+        file.data = extend(file.data || {}, result);
+        self.push(file);
+      }
       callback();
     }
 
