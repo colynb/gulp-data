@@ -156,7 +156,9 @@ if (file.data) {
 - [@shinnn](https://github.com/shinnn)
 - [@phillipgreenii](https://github.com/phillipgreenii)
 
+## Libraries Using `gulp-data`
 
+- [Gulp Starter (a delicious blend of tasks and build tools)](https://github.com/vigetlabs/gulp-starter)
 
 ## License
 
