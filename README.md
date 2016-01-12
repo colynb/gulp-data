@@ -36,6 +36,7 @@ var data = require('gulp-data');
 var fm = require('front-matter');
 var path = require('path');
 var MongoClient = require('mongodb').MongoClient;
+var fs = require('fs');
 
 /*
   Get data via JSON file, keyed on filename.
@@ -43,7 +44,7 @@ var MongoClient = require('mongodb').MongoClient;
 gulp.task('json-test', function() {
   return gulp.src('./examples/test1.html')
     .pipe(data(function(file) {
-      return require('./examples/' + path.basename(file.path) + '.json');
+      return JSON.parse(fs.readFileSync('./examples/' + path.basename(file.path) + '.json'));
     }))
     .pipe(swig())
     .pipe(gulp.dest('build'));
