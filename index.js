@@ -1,13 +1,13 @@
 var extend = require('util-extend');
 var through = require('through2');
-var gutil = require('gulp-util');
+var PluginError = require('plugin-error');
 
 module.exports = function(data) {
   'use strict';
 
   // if necessary check for required param(s), e.g. options hash, etc.
   if (!data) {
-    throw new gutil.PluginError('gulp-data', 'No data supplied');
+    throw new PluginError('gulp-data', 'No data supplied');
   }
 
   // see 'Writing a plugin'
@@ -24,7 +24,7 @@ module.exports = function(data) {
       }
       called = true;
       if (err) {
-        self.emit('error', new gutil.PluginError('gulp-data', { message: err }));
+        self.emit('error', new PluginError('gulp-data', { message: err }));
         return callback();
       }
       file.data = extend(file.data || {}, result);
