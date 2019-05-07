@@ -7,6 +7,9 @@
 
 [Learn more about gulp.js, the streaming build system](http://gulpjs.com)
 
+[Donate](https://www.paypal.me/ColynBrown?locale.x=en_US)
+
+
 ## Introduction
 
 Gulp-data proposes a common API for attaching data to the file object for other plugins to consume. With gulp-data you can generate a data object from a variety of sources: json, front-matter, database, anything... and set it to the file object for other plugins to consume.
