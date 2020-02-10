@@ -1,4 +1,6 @@
-# [gulp](https://github.com/wearefractal/gulp)-data
+# gulp-data
+
+
 
 [![Build Status](https://travis-ci.org/colynb/gulp-data.svg?branch=master)](https://travis-ci.org/colynb/gulp-data)
 [![Dependencies](https://david-dm.org/colynb/gulp-data.svg)](https://david-dm.org/colynb/gulp-data)
@@ -7,7 +9,7 @@
 
 [Learn more about gulp.js, the streaming build system](http://gulpjs.com)
 
-[![Donate](https://infrontlabs.com/Donate.612b038d.png)](https://www.paypal.me/ColynBrown?locale.x=en_US)
+Checkout https://colyn.dev/docs for documentation
 
 
 ## Introduction
@@ -168,4 +170,4 @@ if (file.data) {
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
 
-Checkout https://colyn.dev/docs for documentation
+
