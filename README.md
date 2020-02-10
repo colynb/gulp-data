@@ -167,3 +167,5 @@ if (file.data) {
 ## License
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
+
+Checkout https://colyn.dev/docs for documentation
