@@ -1,7 +1,5 @@
 # gulp-data
 
-
-
 [![Build Status](https://travis-ci.org/colynb/gulp-data.svg?branch=master)](https://travis-ci.org/colynb/gulp-data)
 [![Dependencies](https://david-dm.org/colynb/gulp-data.svg)](https://david-dm.org/colynb/gulp-data)
 
@@ -11,14 +9,13 @@
 
 Checkout https://colyn.dev/docs for documentation
 
-
 ## Introduction
 
 Gulp-data proposes a common API for attaching data to the file object for other plugins to consume. With gulp-data you can generate a data object from a variety of sources: json, front-matter, database, anything... and set it to the file object for other plugins to consume.
 
-Many plugins, such as ```gulp-swig``` or ```gulp-jade``` allow for JSON data to be passed via their respective options parameter. However, frequently what you want is the ability to dynamically set the data based off the file name or some other attribute of the file. Without using another plugin, this becomes problematic - as the number of ways of getting at data (via JSON files, front-matter, data bases, promises, etc) increases, the more plugin authors have to update their APIs to support these sources. The ```gulp-data``` plugin aims to standardize a method that is generic enough to encapsulate these data sources into a single ```data``` property attached to the file object. It's really up to you as to where your data comes from, a JSON file, from a front-matter section of the file, or even a database, ```gulp-data``` doesn't really care.
+Many plugins, such as `gulp-swig` or `gulp-pug` allow for JSON data to be passed via their respective options parameter. However, frequently what you want is the ability to dynamically set the data based off the file name or some other attribute of the file. Without using another plugin, this becomes problematic - as the number of ways of getting at data (via JSON files, front-matter, data bases, promises, etc) increases, the more plugin authors have to update their APIs to support these sources. The `gulp-data` plugin aims to standardize a method that is generic enough to encapsulate these data sources into a single `data` property attached to the file object. It's really up to you as to where your data comes from, a JSON file, from a front-matter section of the file, or even a database, `gulp-data` doesn't really care.
 
-However, for this to be effective, I'm asking plugin devs that receive data through the options parameter to make a small change to additionally accept this data through the ```file.data``` property. (See below)
+However, for this to be effective, I'm asking plugin devs that receive data through the options parameter to make a small change to additionally accept this data through the `file.data` property. (See below)
 
 ## Important Update
 
@@ -91,11 +88,13 @@ gulp.task('db-test', function() {
 ### data(dataFunction)
 
 #### dataFunction
+
 Type: `Function`
 
 Define a function that returns a data object via a callback function. Could return JSON from a file, or an object returned from a database.
 
 You can return the data object:
+
 ```javascript
 data(function(file) {
   return { 'foo': file.path }
@@ -103,6 +102,7 @@ data(function(file) {
 ```
 
 You can return a promise:
+
 ```javascript
 data(function(file) {
   return promise;
@@ -110,6 +110,7 @@ data(function(file) {
 ```
 
 You can feed a result object through the callback:
+
 ```javascript
 data(function(file, callback) {
   return callback(undefined, { 'foo': 'bar' });
@@ -117,6 +118,7 @@ data(function(file, callback) {
 ```
 
 You can feed a promise object through the callback:
+
 ```javascript
 data(function(file, callback) {
   return callback(undefined, promise);
@@ -124,6 +126,7 @@ data(function(file, callback) {
 ```
 
 You can throw an error:
+
 ```javascript
 data(function(file) {
   throw new Error('my-error');
@@ -131,6 +134,7 @@ data(function(file) {
 ```
 
 You can raise an error via the callback:
+
 ```javascript
 data(function(file, callback) {
   return callback('error');
@@ -139,11 +143,11 @@ data(function(file, callback) {
 
 ## Note to gulp plugin authors
 
-If your plugin needs a data object, one that normally gets passed in via your options parameter, I'm asking if you could please update the plugin to accept data from the ```file.data``` property. Here's how you can do it:
+If your plugin needs a data object, one that normally gets passed in via your options parameter, I'm asking if you could please update the plugin to accept data from the `file.data` property. Here's how you can do it:
 
-```gulp-swig``` usually accepts data via its ```options.data``` parameter, but with a small change, it checks to see if there's a ```file.data``` property and if so, merges it into the data object.
+`gulp-swig` usually accepts data via its `options.data` parameter, but with a small change, it checks to see if there's a `file.data` property and if so, merges it into the data object.
 
-```
+```javascript
 var data = opts.data || {};
 if (file.data) {
   data = _.extend(file.data, data);
